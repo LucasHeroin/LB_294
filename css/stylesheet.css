@@ -1,0 +1,81 @@
+body {
+    background-image: url('img/wallpaper2you_409869.jpg');
+
+    backdrop-filter: sepia(100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Fira sans', sans-serif;
+    color: white;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px white;
+    border-radius: 15px;
+}
+
+.thick {
+    width: 7%;
+    font-size: 2rem;
+    border-radius: 0 15px 15px 0;
+   
+}
+.thicker {
+    width: 7%;
+    font-size: 2rem;
+    border-radius: 15px 0 0 15px;
+}
+.notthick {
+    display: table;
+    width: 100%; 
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    grid-template-rows: 1fr 9fr 1fr;
+    min-height: 100vh;
+}
+
+#mainbody {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background-color: rgb(44, 74, 5);
+    opacity: 70%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#topmaincontent {
+    padding: 50px 75px;
+
+}
+
+#bottommaincontent {
+    padding: 50px 75px;
+    flex-grow: 1;
+    
+
+}
+
+#todoListContent {
+    margin-left: -2.2em;
+    overflow-y: scroll;
+}
+
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
