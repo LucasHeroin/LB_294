@@ -1,8 +1,8 @@
 
 function checkLoggedIn() {
     fetch("http://localhost:3000/auth/cookie/status", {
-
-})
+        
+    })
     .then(r => {
         if(r.status == 401){
             document.getElementsByClassName("loggedout")[0].classList.remove("hidden")
