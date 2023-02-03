@@ -1,12 +1,12 @@
 
 function checkLoggedIn() {
-    fetch("http://localhost:3000/auth/cookies/status", {
+    fetch("http://localhost:3000/auth/cookie/status", {
 
 })
     .then(r => {
         if(r.status == 401){
             document.getElementsByClassName("loggedout")[0].classList.remove("hidden")
-        }else if(response.status == 200){
+        }else if(r.status == 200){
             document.getElementsByClassName("loggedout")[0].classList.add("hidden")
             document.getElementsByClassName("loggedin")[0].classList.remove("hidden")
 
@@ -14,9 +14,9 @@ function checkLoggedIn() {
     })
 }
 document.forms[0].addEventListener("submit", function(e){
-    event.preventDefault()
+    e.preventDefault()
 
-    fetch("http://localhost:3000/auth/cookies/login",{method: "POST",
+    fetch("http://localhost:3000/auth/cookie/login",{method: "POST",
     credentials: "include",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -26,7 +26,8 @@ document.forms[0].addEventListener("submit", function(e){
     if(response.status == 200){
         checkLoggedIn()
     }
-    checkLoggedIn()
 })
 
 })
+
+checkLoggedIn()
