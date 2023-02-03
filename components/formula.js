@@ -1,59 +1,66 @@
 let items = []
 
-function loadTasks(){
-    
-    fetch("http://localhost:3000/tasks", { method: "GET"}).then((r) => r.json())
-    .then(json => {
-        items = json
-        renderList()
-    })
+function loadTasks() {
+
+    fetch("http://localhost:3000/auth/cookie/tasks", { method: "GET", credentials: "include" })
+        .then((r) => r.json())
+        .then(json => {
+            items = json
+            renderList()
+        })
 }
 function addNewTasktoMyBack(itemText) {
-    fetch("http://localhost:3000/tasks", {method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({title: itemText})})
-    .then(response => {
-        if (response.ok){
-            loadTasks()
-        }else{
-            alert("Failed")
-        }
+    fetch("http://localhost:3000/auth/cookie/tasks", {
+        method: "POST", credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: itemText })
     })
+        .then(response => {
+            if (response.ok) {
+                loadTasks()
+            } else {
+                alert("Failed")
+            }
+        })
 }
 function deleteMyBack(i) {
-    fetch(`http://localhost:3000/task/${i}`, {method: "DELETE",
-    headers: {"Content-Type": "application/json"}})
-    .then(response => {
-        if (response.ok){
-            loadTasks()
-        }else{
-            alert("Failed")
-        }
+    fetch(`http://localhost:3000/auth/cookie/task/${i}`, {
+        method: "DELETE", credentials: "include",
+        headers: { "Content-Type": "application/json" }
     })
+        .then(response => {
+            if (response.ok) {
+                loadTasks()
+            } else {
+                alert("Failed")
+            }
+        })
 }
 
-function scratchMyBAck(itemText,id) {
-    fetch(`http://localhost:3000/tasks`, {method: "PUT",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({title: itemText, id: id})})
-    .then(response => {
-        if (response.ok){
-            loadTasks()
-        }else{
-            alert("Failed")
-        }
+function scratchMyBAck(itemText, id) {
+    fetch(`http://localhost:3000/auth/cookie/tasks`, {
+        method: "PUT", credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: itemText, id: id })
     })
+        .then(response => {
+            if (response.ok) {
+                loadTasks()
+            } else {
+                alert("Failed")
+            }
+        })
 }
 //RENDER so that the array and the output on the website stays the same
 function renderList() {
     const listElement = document.getElementById("todoListContent")
     listElement.innerText = ""
-    
+
     items.forEach(function (listItem, i) {
         const newItemElement = document.createElement("li")
         const newPElement = document.createElement("p")
         newPElement.classList.add("notthick")
-        newPElement.innerText =  `${listItem.title}`
+        newPElement.innerText = `${listItem.title}`
         newItemElement.append(newPElement)
         listElement.append(newItemElement)
 
@@ -79,7 +86,7 @@ function renderList() {
             newItemElement.replaceChildren(inputChange)
 
             inputChange.addEventListener("blur", () => {
-                if(inputChange.value != "") {
+                if (inputChange.value != "") {
                     //items[i] = inputChange.value
                     scratchMyBAck(inputChange.value, listItem.id)
                 } renderList()
